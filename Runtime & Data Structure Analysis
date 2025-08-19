@@ -1,0 +1,49 @@
+Vector:
+Code	Line Cost	# Times Executes	Total Cost
+Load Courses into data structure	2	n	2*n
+Sort course info	1	1	1
+For printing course info	2	n	2*n
+for each prerequisite of the course	2	n	2*n
+print the prerequisite course info	1	1	1
+Total Cost	2 + 6n * n
+Runtime	O(n2)
+
+HashTable:
+Code	Line Cost	# Times Executes	Total Cost
+Load Courses into hash table	2	n	2*n
+Store Hash objects in temp vector	1	1	1
+Sort course info of temp vector	1	1	1
+For printing course info	2	n	2*n
+for each prerequisite of the course	2	n	2*n
+print the prerequisite course info	1	1	1
+Total Cost	3+6n * n
+Runtime	O(n2)
+
+Binary Tree Search:
+Code	Line Cost	# Times Executes	Total Cost
+Load Courses	3	n	3*n
+Traverse left to store objects in order	4	n	4*n
+Traverse right to store objects in order	4	n	4*n
+Print course info using inOrder function	4	n	4*n
+for each prerequisite of the course	2	n	2*n
+print the prerequisite course info	1	1	1
+Total Cost	1+17n * n
+Runtime	O(n2)
+
+Evaluation & Recommendation:
+Vectors have a relatively simple process for ordering and printing their data.
+Once you load all the data from file into objects in the vector you can use the Sort function to place them in alphanumeric order and simply print the vector like a list.
+This makes sorting, searching, and printing simple on the programming side though it isn’t a great option for larger data sets that might be more complicated.
+
+Hash tables are not friendly to sorting alphanumerically. There is also no good reason to store them in order since the Hash table relies on key values for more efficient searches.
+The only way I found to print the courses from the hash table in order was to store them in a temporary vector and then sort and print that.
+This added step is reflected in the runtime analysis though it doesn’t have a huge effect on the overall O notation.
+
+When it comes to the Binary Search Tree all the burden of sorting alphanumerically is taken during the initial storage from the file into the data structure. This has the effect of making any search and printing extremely easy. 
+According to the runtime analysis the additional code does make the total cost more burdensome than the Vector or Hash structure.
+Despite that the Runtime didn’t suffer any additional orders of magnitude it shouldn’t take much more time than the others to run.
+
+After comparing the three data structures I would recommend using the Binary Search Tree for the data structure. 
+It is modular and smooth when inserting new data and the printing/searching is easier than the Hash table. 
+The vector structure would be perfect, but you have to consider the possibility for our data set to grow and include more classes in the future. 
+Since the Binary tree search is easier to work with than the Hash and has better growth potential than vector while maintaining similar runtime functionality; I believe it is the best choice for this project.
