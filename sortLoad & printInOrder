@@ -1,0 +1,56 @@
+// Method to read course information from a file and load into data structure
+void sortLoad(ifstream& courseFile, BinarySearchTree* bst) {
+
+	if (!courseFile.is_open()) {
+		cout << "Error Opening File." << endl << endl;
+		return;
+	}
+
+	else {
+		int i;
+		string line;
+		string tokens;
+
+
+		while (getline(courseFile, line)) {
+
+			i = 0;
+			Node* node = new Node();
+			stringstream ss(line);
+
+			// Split the line into tokens based on commas
+			while (i < 2) {
+				getline(ss, tokens, ',');
+				if (i == 0) {
+					node->course.courseNumber = tokens;
+				}
+				else if (i == 1) {
+					node->course.courseName = tokens;
+				}
+				i++;
+			}
+
+			// If there are more tokens, they are prerequisites
+			while (getline(ss, tokens, ',')) {
+				node->course.preReq.push_back(tokens);
+			}
+
+			bst->addNode(bst, node);
+		}
+	}
+
+ //Method to print all courses in aplhanumeric order
+void printInOrder(Node* node) {
+
+	//If tree is empty, return
+	if(node == nullptr) {
+		return;
+	}
+
+	//Recursively print left subtree, current node, and right subtree (in-order method)
+	printInOrder(node->left);
+	cout << node->course.courseNumber << " , " << node->course.courseName << endl;
+	printInOrder(node->right);
+}
+	
+}
